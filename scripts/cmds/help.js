@@ -1,136 +1,184 @@
 const fs = require("fs-extra");
+
 const axios = require("axios");
+
 const path = require("path");
+
 const { getPrefix } = global.utils;
+
 const { commands, aliases } = global.GoatBot;
-const doNotDelete = "[ 🌟 | 𝗚𝗢𝗞𝗨-𝗕𝗟𝗔𝗖𝗞 ]";
+
+const doNotDelete = "[ 🐐 | 𝐆𝐨𝐚𝐭𝐁𝐨𝐭 𝐕𝟐 ]"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
+
 
 module.exports = {
+
   config: {
+
     name: "help",
+
     version: "1.17",
-    author: "MR.AYAN", //**orginal author fb I'd : https://m.me/NOOBS.DEVELOPER.AYAN **//
-    countDown: 5,
+
+    author: "NTKhang", // KaizenXMahi
+
+    countDown: 10,
+
     role: 0,
+
     shortDescription: {
+
       en: "View command usage and list all commands directly",
+
     },
+
     longDescription: {
+
       en: "View command usage and list all commands directly",
+
     },
-    category: "info",
+
+    category: "system",
+
     guide: {
+
       en: "{pn} / help cmdName ",
+
     },
+
     priority: 1,
+
   },
 
-  onStart: async function ({ message, args, event, threadsData, role }) {
-  const { threadID } = event;
-  const threadData = await threadsData.get(threadID);
-  const prefix = getPrefix(threadID);
 
-  if (args.length === 0) {
+  onStart: async function ({ message, args, event, threadsData, role }) {
+
+    const { threadID } = event;
+
+    const threadData = await threadsData.get(threadID);
+
+    const prefix = getPrefix(threadID);
+
+
+    if (args.length === 0) {
+
       const categories = {};
+
       let msg = "";
 
-      msg += `╔═══════════╗\n     𝗚𝗢𝗞𝗨-𝗕𝗟𝗔𝗖𝗞🌟\n╚═══════════╝`;
+
+      msg += `╔═══════════╗\n         (⁠🩷🪽Sojib Help Command )⁠✧⁠*⁠。\n╚═══════════╝`; // replace with your name 
+
 
       for (const [name, value] of commands) {
-          if (value.config.role > 1 && role < value.config.role) continue;
 
-          const category = value.config.category || "Uncategorized";
-          categories[category] = categories[category] || { commands: [] };
-          categories[category].commands.push(name);
+        if (value.config.role > 1 && role < value.config.role) continue;
+
+
+        const category = value.config.category || "Uncategorized";
+
+        categories[category] = categories[category] || { commands: [] };
+
+        categories[category].commands.push(name);
+
       }
 
-      Object.keys(categories).forEach(category => {
-          if (category !== "info") {
-              msg += `\n╭─╮\n│『 ${category.toUpperCase()} 』`;
 
-              const names = categories[category].commands.sort();
-              for (let i = 0; i < names.length; i += 3) {
-                  const cmds = names.slice(i, i + 3).map(item => `✧${item}`);
-                  msg += `\n│${cmds.join(" ".repeat(Math.max(1, 10 - cmds.join("").length)))}`;
-              }
+      Object.keys(categories).forEach((category) => {
 
-              msg += `\n╰────────────ꔪ`;
+        if (category !== "info") {
+
+          msg += `\n╭── 『  ${category.toUpperCase()}  』`;
+
+
+          const names = categories[category].commands.sort();
+
+          for (let i = 0; i < names.length; i += 3) {
+
+            const cmds = names.slice(i, i + 3).map((item) => `⌖${item}`);
+
+            msg += `\n${cmds.join(" ".repeat(Math.max(1, 10 - cmds.join("").length)))}`;
+
           }
+
+
+          msg += `\n╰───────────◊`;
+
+        }
+
       });
+
 
       const totalCommands = commands.size;
-      msg += `\n𝗖𝘂𝗿𝗿𝗲𝗻𝘁𝗹𝘆, 𝘁𝗵𝗲 𝗯𝗼𝘁 𝗵𝗮𝘀 ${totalCommands} 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝘁𝗵𝗮𝘁 𝗰𝗮𝗻 𝗯𝗲 𝘂𝘀𝗲𝗱\n`;
-      msg += `𝗧𝘆𝗽𝗲 ${prefix}𝗵𝗲𝗹𝗽 [𝗚𝗢𝗞𝗨-/𝗕𝗟𝗔𝗖𝗞] 𝘁𝗼 𝘃𝗶𝗲𝘄 𝘁𝗵𝗲 𝗱𝗲𝘁𝗮𝗶𝗹𝘀 𝗼𝗳 𝘁𝗵𝗮𝘁 𝗰𝗼𝗺𝗺𝗮𝗻𝗱\n`;
-      msg += `🌟 | 𝗚𝗢𝗞𝗨-𝗕𝗟𝗔𝗖𝗞 `;
+
+      msg += `\n\n╭──────────◊\n» 𝙏𝙤𝙩𝙖𝙡 𝙘𝙢𝙙𝙨: [ ${totalCommands} ]\n`;
+
+      msg += `» 𝙏𝙮𝙥𝙚 [ ${prefix}help <𝙘𝙢𝙙> ] 𝙩𝙤 𝙡𝙚𝙖𝙧𝙣 𝙪𝙨𝙖𝙜𝙚.\n╰────────◊\n\n`;
+
+      msg += `「 Rdx | Sojib」`; // its not decoy so change it if you want 
 
 
-      const helpListImages = [
-        "https://i.postimg.cc/9FQCBFSB/f10c9b7b0eabc3067ebbc700e5f3e4b1.jpg", // add image link here
-        "https://i.postimg.cc/sXWqcb9y/b33292e270f53f1d49ac29c2361ca559.jpg",
-        "https://i.postimg.cc/NGp7npJw/c8a5f878e8c7e467b5e88a921fa1cd22.jpg",
-        "https://i.postimg.cc/0jnsYLPj/c1cec1609f6bb272fa85b19aa4182475.jpg",
-        "https://i.postimg.cc/0jnsYLPj/c1cec1609f6bb272fa85b19aa4182475.jpg",
-        // Add more image links as needed
-      ];
+      await message.reply(msg);
 
+    } else {
 
-      const helpListImage = helpListImages[Math.floor(Math.random() * helpListImages.length)];
-
-
-      await message.reply({
-          body: msg,
-          attachment: await global.utils.getStreamFromURL(helpListImage)
-      });
-  } else {
       const commandName = args[0].toLowerCase();
+
       const command = commands.get(commandName) || commands.get(aliases.get(commandName));
 
+
       if (!command) {
+
         await message.reply(`Command "${commandName}" not found.`);
+
       } else {
+
         const configCommand = command.config;
+
         const roleText = roleTextToString(configCommand.role);
+
         const author = configCommand.author || "Unknown";
+
 
         const longDescription = configCommand.longDescription ? configCommand.longDescription.en || "No description" : "No description";
 
+
         const guideBody = configCommand.guide?.en || "No guide available.";
+
         const usage = guideBody.replace(/{p}/g, prefix).replace(/{n}/g, configCommand.name);
 
-        const response = `━━━━━━━━━━━━━━━━━♡
-   
-   ➢  ♡𝐍𝐀𝐌𝐄♡ 
-    ➠${configCommand.name}
-   ➢ 𝙄𝙉𝙁𝙊
-    
-     ➠𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻 : ${longDescription}
-     ➠𝗼𝘁𝗵𝗲𝗿 𝗻𝗮𝗺𝗲𝘀 : ${configCommand.aliases ? configCommand.aliases.join(", ") : "Do not have"}
-    Other names in your group:  Do not have
-     ➠𝗔𝘂𝘁𝗵𝗼𝗿: ${author}
-     ➠𝗩𝗲𝗿𝘀𝗶𝗼𝗻 : ${configCommand.version || "1.0"}
-     ➠𝗥𝗼𝗹𝗲 : ${roleText}
-     ➠𝗧𝗶𝗺𝗲 𝗽𝗲𝗿 𝗰𝗼𝗺𝗺𝗮𝗱: ${configCommand.countDown || 1}s
-   ➢ 𝙐𝙎𝘼𝙂𝙀
-     ➠ ${usage}
-   ➢ 𝙉𝙊𝙏𝙀𝙎
-    scripts coding by MR.RAFI
-  ━━━━━━━━━━━━━━━━━━ꔪ`;
+         const response = `𝗖𝗢𝗠𝗠𝗔𝗡𝗗 𝗜𝗡𝗙𝗢\n\n›› 𝗡𝗮𝗺𝗲: ${configCommand.name}\n››𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻: ${longDescription}\n››𝗔𝗹𝗶𝗮𝘀𝗲𝘀: ${configCommand.aliases ? configCommand.aliases.join(", ") : "do not have."}\n››𝗩𝗲𝗿𝘀𝗶𝗼𝗻: ${configCommand.version || "1.0"}\n››𝗥𝗼𝗹𝗲: ${roleText}\n››𝗖𝗼𝘂𝗻𝘁𝗱𝗼𝘄𝗻: ${configCommand.countDown || 1}s\n››𝗔𝘂𝘁𝗵𝗼𝗿: ${author}\n››𝗨𝘀𝗮𝗴𝗲: ${usage}`;
 
-        await message.reply(response);
+            await message.reply(response);
+
       }
+
     }
+
   },
+
 };
 
+
 function roleTextToString(roleText) {
+
   switch (roleText) {
+
     case 0:
+
       return "0 (All users)";
+
     case 1:
+
       return "1 (Group administrators)";
+
     case 2:
+
       return "2 (Admin bot)";
+
     default:
+
       return "Unknown role";
+
   }
-}
+
+      }
