@@ -1,7 +1,7 @@
 {
   "facebookAccount": {
-    "email": "oxsobuj81@gmail.com",
-    "password": "01200120mahi",
+    "email": "rkraselislam101520@gmail.com ",
+    "password": "",
     "2FASecret": "",
     "i_user": "",
     "proxy": null,
@@ -35,15 +35,15 @@
   "timeZone": "Asia/Kathmandu",
   "credentials": {
     "gmailAccount": {
-      "email": "",
-      "clientId": "",
-      "clientSecret": "",
-      "refreshToken": "",
+      "email": "rkraselislam101520@gmail.com ",
+      "clientId": "749047742198-pckgm4ukvkc19uudveunkv52h3ca7aqd.apps.googleusercontent.com",
+      "clientSecret": "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",
+      "refreshToken": "1//04PNQtuje0iHvCgYIARAAGAQSNwF-L9IrzE_9Uge_97uOGmCtrEJOVv09aJXckFA3diPUtzhXfEVbsoLqzfK_64IHT6VimP4eBaU",
       "apiKey": ""
     },
     "gRecaptcha": {
-      "siteKey": "",
-      "secretKey": ""
+      "siteKey": "6Le2gdgpAAAAAEPhHY2r6wv5ITds5_6NPYhTFwuv",
+      "secretKey": "6Le2gdgpAAAAAE7XEQ5VXK-L_W1GfcOpnZgf4EHv"
     }
   },
   "dashBoard": {
