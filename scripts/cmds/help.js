@@ -8,7 +8,7 @@ const { getPrefix } = global.utils;
 
 const { commands, aliases } = global.GoatBot;
 
-const doNotDelete = "[ 🐐 | 𝐆𝐨𝐚𝐭𝐁𝐨𝐭 𝐕𝟐 ]"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
+const doNotDelete = "[ 𝗚𝗼𝗮𝘁𝗕𝗼𝘁🤍🪽 ]"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
 
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
 
     },
 
-    category: "system",
+    category: "𝗦𝗬𝗦𝗧𝗘𝗠",
 
     guide: {
 
@@ -66,7 +66,7 @@ module.exports = {
       let msg = "";
 
 
-      msg += `╔═══════════╗\n         (⁠🩷🪽Sojib Help Command )⁠✧⁠*⁠。\n╚═══════════╝`; // replace with your name 
+      msg += `📍𝗖𝗢𝗠𝗠𝗔𝗡𝗗 𝗟𝗜𝗦𝗧`; // replace with your name 
 
 
       for (const [name, value] of commands) {
@@ -94,7 +94,7 @@ module.exports = {
 
           for (let i = 0; i < names.length; i += 3) {
 
-            const cmds = names.slice(i, i + 3).map((item) => `⌖${item}`);
+            const cmds = names.slice(i, i + 3).map((item) => `✧${item}`);
 
             msg += `\n${cmds.join(" ".repeat(Math.max(1, 10 - cmds.join("").length)))}`;
 
@@ -110,11 +110,12 @@ module.exports = {
 
       const totalCommands = commands.size;
 
-      msg += `\n\n╭──────────◊\n» 𝙏𝙤𝙩𝙖𝙡 𝙘𝙢𝙙𝙨: [ ${totalCommands} ]\n`;
+      msg += `\n\n╭──────────◊\n» 𝗧𝗼𝘁𝗮𝗹 𝗖𝗺𝗱𝙨: [ ${totalCommands} ]\n`;
 
-      msg += `» 𝙏𝙮𝙥𝙚 [ ${prefix}help <𝙘𝙢𝙙> ] 𝙩𝙤 𝙡𝙚𝙖𝙧𝙣 𝙪𝙨𝙖𝙜𝙚.\n╰────────◊\n\n`;
+      msg += `»𝗧𝘆𝗽𝗲 [ ${prefix}𝗛𝗲𝗹𝗽 <𝗖𝗺𝗱 > ] 
+𝘁𝗼 𝗹𝗲𝗮𝗿𝗻 𝘂𝘀𝗮𝗴𝗲.\n╰────────◊\n\n`;
 
-      msg += `「 Rdx | Sojib」`; // its not decoy so change it if you want 
+      msg += ` [ 𝗚𝗼𝗮𝘁𝗕𝗼𝘁🤍🪽 ] `; // its not decoy so change it if you want 
 
 
       await message.reply(msg);
@@ -181,4 +182,4 @@ function roleTextToString(roleText) {
 
   }
 
-      }
+                        }
